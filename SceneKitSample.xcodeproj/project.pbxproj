@@ -12,6 +12,7 @@
 		FEF9E65E20159910009132DE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FEF9E65C20159910009132DE /* Main.storyboard */; };
 		FEF9E66020159910009132DE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FEF9E65F20159910009132DE /* Assets.xcassets */; };
 		FEF9E66320159910009132DE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FEF9E66120159910009132DE /* LaunchScreen.storyboard */; };
+		FEF9E66B2015BCD3009132DE /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEF9E66A2015BCD3009132DE /* GameScene.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +23,7 @@
 		FEF9E65F20159910009132DE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FEF9E66220159910009132DE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		FEF9E66420159910009132DE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FEF9E66A2015BCD3009132DE /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,12 +56,13 @@
 		FEF9E65720159910009132DE /* SceneKitSample */ = {
 			isa = PBXGroup;
 			children = (
+				FEF9E66420159910009132DE /* Info.plist */,
 				FEF9E65820159910009132DE /* AppDelegate.swift */,
+				FEF9E66A2015BCD3009132DE /* GameScene.swift */,
 				FEF9E65A20159910009132DE /* ViewController.swift */,
-				FEF9E65C20159910009132DE /* Main.storyboard */,
 				FEF9E65F20159910009132DE /* Assets.xcassets */,
 				FEF9E66120159910009132DE /* LaunchScreen.storyboard */,
-				FEF9E66420159910009132DE /* Info.plist */,
+				FEF9E65C20159910009132DE /* Main.storyboard */,
 			);
 			path = SceneKitSample;
 			sourceTree = "<group>";
@@ -136,6 +139,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FEF9E66B2015BCD3009132DE /* GameScene.swift in Sources */,
 				FEF9E65B20159910009132DE /* ViewController.swift in Sources */,
 				FEF9E65920159910009132DE /* AppDelegate.swift in Sources */,
 			);
