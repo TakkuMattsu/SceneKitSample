@@ -20,10 +20,20 @@ class GameScene: SCNScene {
 
 extension GameScene {
     fileprivate func setUpScene() {
-        // 球
-        let sphere: SCNGeometry = SCNSphere(radius: 2)
-        let geometryNode = SCNNode(geometry: sphere)
-        self.rootNode.addChildNode(geometryNode)
+        // 箱
+        let box: SCNNode = {
+            let box: SCNGeometry = SCNBox(width: 3, height: 3, length: 3, chamferRadius: 0.4)
+            let node = SCNNode(geometry: box)
+            // 移動させてみる
+            node.position = SCNVector3(0, 0, 0)
+            // 拡大してみる
+            node.scale = SCNVector3(0.5, 0.5, 0.5)
+            // 回転
+            // うーむ、記事だと回転しないって言ってるけど回転するなぁ
+            node.rotation = SCNVector4(1, 1, 1, 0.25 * Float.pi)
+            return node
+        }()
+        self.rootNode.addChildNode(box)
         // オムニライト
         let lightNode: SCNNode = {
             let node = SCNNode()
