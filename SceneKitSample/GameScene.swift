@@ -20,20 +20,39 @@ class GameScene: SCNScene {
 
 extension GameScene {
     fileprivate func setUpScene() {
-        // 箱
-        let box: SCNNode = {
-            let box: SCNGeometry = SCNBox(width: 3, height: 3, length: 3, chamferRadius: 0.4)
-            let node = SCNNode(geometry: box)
-            // 移動させてみる
-            node.position = SCNVector3(0, 0, 0)
-            // 拡大してみる
-            node.scale = SCNVector3(0.5, 0.5, 0.5)
-            // 回転
-            // うーむ、記事だと回転しないって言ってるけど回転するなぁ
-            node.rotation = SCNVector4(1, 1, 1, 0.25 * Float.pi)
+        enum TestType {
+            case basic
+            case action
+            case transition
+        }
+        let type: TestType = .transition
+        // ドーナツ
+        let node: SCNNode = {
+            let torus = SCNTorus(ringRadius: 2, pipeRadius: 0.35)
+            let node = SCNNode(geometry: torus)
+            // 回転アニメーション
+            switch type {
+            case .basic:
+                let rotate: CABasicAnimation = {
+                    let animation = CABasicAnimation(keyPath: "rotation")
+                    animation.fromValue = SCNVector4(0.0, 0.0, 0.0, 0.0)
+                    animation.toValue = SCNVector4(1.0, 0.0, 0.0, Float.pi * 2.0)
+                    animation.duration = 10
+                    animation.repeatCount = HUGE
+                    return animation
+                }()
+                node.addAnimation(rotate, forKey: "rotate")
+            case .action:
+                node.runAction(
+                    SCNAction.repeatForever(
+                        SCNAction.sequence([
+                            SCNAction.rotateBy(x: CGFloat(Float.pi * 1.0), y: 0, z: 0, duration: 5),
+                            SCNAction.rotateBy(x: 0, y: 0, z: CGFloat(Float.pi * 1.0), duration: 5)])))
+            case .transition: break
+            }
             return node
         }()
-        self.rootNode.addChildNode(box)
+        self.rootNode.addChildNode(node)
         // オムニライト
         let lightNode: SCNNode = {
             let node = SCNNode()
@@ -66,5 +85,12 @@ extension GameScene {
             return node
         }()
         self.rootNode.addChildNode(cameraNode)
+        if type == .transition {
+            SCNTransaction.begin()
+            SCNTransaction.animationDuration = 10
+            node.rotation = SCNVector4(1.0, 0.0, 0.0, Float.pi * 2.0)
+            cameraNode.position = SCNVector3(x: 0, y: 0, z: 30)
+            SCNTransaction.commit()
+        }
     }
 }
