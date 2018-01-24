@@ -15,3 +15,4 @@ http://appleengine.hatenablog.com/entry/2017/05/29/184901
 | 5 | http://appleengine.hatenablog.com/entry/2017/06/01/124340 | シーンエディタを使用しない空のテンプレートをつくる |
 | 6 | http://appleengine.hatenablog.com/entry/2017/06/02/163647 | オブジェクトの移動、回転 |
 | 7 | http://appleengine.hatenablog.com/entry/2017/06/02/175927 | 標準的なアニメーション |
+| 8 | http://appleengine.hatenablog.com/entry/2017/06/05/194159 | SCNAction でアニメーション設定 |

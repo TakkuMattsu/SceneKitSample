@@ -20,36 +20,19 @@ class GameScene: SCNScene {
 
 extension GameScene {
     fileprivate func setUpScene() {
-        enum TestType {
-            case basic
-            case action
-            case transition
-        }
-        let type: TestType = .transition
-        // ドーナツ
+        // box
         let node: SCNNode = {
-            let torus = SCNTorus(ringRadius: 2, pipeRadius: 0.35)
-            let node = SCNNode(geometry: torus)
-            // 回転アニメーション
-            switch type {
-            case .basic:
-                let rotate: CABasicAnimation = {
-                    let animation = CABasicAnimation(keyPath: "rotation")
-                    animation.fromValue = SCNVector4(0.0, 0.0, 0.0, 0.0)
-                    animation.toValue = SCNVector4(1.0, 0.0, 0.0, Float.pi * 2.0)
-                    animation.duration = 10
-                    animation.repeatCount = HUGE
-                    return animation
-                }()
-                node.addAnimation(rotate, forKey: "rotate")
-            case .action:
-                node.runAction(
-                    SCNAction.repeatForever(
-                        SCNAction.sequence([
-                            SCNAction.rotateBy(x: CGFloat(Float.pi * 1.0), y: 0, z: 0, duration: 5),
-                            SCNAction.rotateBy(x: 0, y: 0, z: CGFloat(Float.pi * 1.0), duration: 5)])))
-            case .transition: break
-            }
+            let box = SCNBox(width: 1, height: 2, length: 1, chamferRadius: 0.2)
+            let node = SCNNode(geometry: box)
+            let action = SCNAction.moveBy(x: 2, y: 0, z: 0, duration: 2)
+            //node.runAction(action)
+            let action2 = SCNAction.moveBy(x: 2, y: 0, z: 0, duration: 2)
+            //node.runAction(action2)
+            // Vectorで移動
+            let action3 = SCNAction.move(by: SCNVector3(2, 0, 0), duration: 2)
+            //node.runAction(action3)
+            let action4 = SCNAction.move(to: SCNVector3.init(2, 0, 0), duration: 2)
+            node.runAction(action4)
             return node
         }()
         self.rootNode.addChildNode(node)
@@ -85,12 +68,5 @@ extension GameScene {
             return node
         }()
         self.rootNode.addChildNode(cameraNode)
-        if type == .transition {
-            SCNTransaction.begin()
-            SCNTransaction.animationDuration = 10
-            node.rotation = SCNVector4(1.0, 0.0, 0.0, Float.pi * 2.0)
-            cameraNode.position = SCNVector3(x: 0, y: 0, z: 30)
-            SCNTransaction.commit()
-        }
     }
 }
